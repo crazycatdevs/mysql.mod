@@ -23,41 +23,41 @@ is made especially for Eggdrops.
 ########## Tcl Commands ##########
 
 mysql_connect <database> <hostname> [user] [password] [socket|port]
-Initializes the connection to the database.  If hostname is `localhost', the
-connection will be piped into a socket instead of using a tcp port.  Socket is
-the path to the unix socket, such as /tmp/mysql.sock.
+Initializes the connection to the database and returns handle of the connection.
+If hostname is `localhost', the connection will be piped into a socket instead of using a tcp port. Socket is the path to the unix socket, such as /tmp/mysql.sock.
 
-mysql_close
-Closed the current database connection, freeing its memory.
 
-mysql_query <query>
+mysql_close <handle>
+Closed the database connection designated by handle, freeing its memory.
+
+mysql_query <handle> <query>
 Executes a query and returns its results in a nested list.  A semi-colon is
 automatically appended to the end of the statement.
 
-mysql_escape [byte] <string>
+mysql_escape [handle] [byte] <string>
 Makes a string safe to be used in MySQL.  Adds backslashes before single
 quotes, doubles backslashes, and so on.  Only specify the byte argument if you
 are handling binary data.  Using it incorrectly will crash your bot, or worse.
 
-mysql_errno
+mysql_errno [handle]
 Returns the error code that was last encountered. A list of error codes is
 available at: http://www.mysql.com/doc/en/Error-returns.html
 
-mysql_ping
+mysql_ping [handle]
 Checks whether the connection to the server is working. If it has gone down, an
 automatic reconnection is attempted.
 
-mysql_connectioninfo
+mysql_connectioninfo [handle]
 If connected, returns a list of database name, hostname, user, and port/sock.
 
-mysql_insert_id
+mysql_insert_id [handle]
 Returns the ID from the last insertion.
 
-mysql_connected
+mysql_connected [handle]
 Return whether the module thinks the database is linked (true) or not (false).
 Note: It can be wrong.
 
-mysql_affected_rows
+mysql_affected_rows [handle]
 Returns the number of rows that were changed by the last query.
 
 Website:
@@ -65,3 +65,4 @@ Website:
   https://www.barkerjr.net/eggdropmodules.html (dead link)
   http://web.archive.org/web/20120618070557/http://www.barkerjr.net/eggdropmodules.html
   http://mirror.slackware.hr/sources/mysql.mod.0.6.tar.bz2
+  https://github.com/crazycatdevs/mysql.mod
