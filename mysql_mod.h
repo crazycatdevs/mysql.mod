@@ -4,6 +4,7 @@
 /*
  * Copyright (C) 2003 - 2006 BarkerJr <http://barkerjr.net>
  * Copyright (C) 2024 Michael Ortmann
+ * Copyright (C) 2026 CrazyCat
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,12 +24,12 @@
 #define STDVARPROT (ClientData, Tcl_Interp *, int, char *[]);
 
 #define CHECKDB \
-  if (!dbc) \
-  { \
-    Tcl_SetObjResult(irp, \
-                     Tcl_NewStringObj("Not connected to a database", -1)); \
-    return TCL_ERROR; \
-  }
+   if (!dbc) \
+   { \
+      Tcl_SetObjResult(irp, \
+         Tcl_NewStringObj("Not connected to a database", -1)); \
+      return TCL_ERROR; \
+   }
 
 #define list_delete egg_list_delete
 #include "src/mod/module.h"
